@@ -11,3 +11,9 @@ export interface AddonType{
     another: number,
     third: number
 }
+
+export interface InfoType{
+    name: string,
+    email: string,
+    number: string
+}

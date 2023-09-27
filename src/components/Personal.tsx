@@ -1,7 +1,14 @@
 
 
+interface Info {
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  setPhone: React.Dispatch<React.SetStateAction<string>>;
+  
+}
 
-const Personal = () => {
+
+const Personal: React.FC<Info> = ({setName, setEmail, setPhone}) => {
 
 
   
@@ -18,15 +25,27 @@ const Personal = () => {
         <div className=" grid gap-5 mt-5 pb-7 ">
           <div>
             <p className=" font-[400] text-[12px] text-[#022959] ">Name</p>
-            <input className="w-full h-10 border border-[#D6D9E6] bg-white font-[500] text-[15px] outline-none pl-3" placeholder="e.g. Stephen King"  type="input" />
+            <input
+             onChange={(e) => {
+                setName(e.target.value)
+            }} className="w-full h-10 border border-[#D6D9E6] bg-white font-[500] text-[15px] outline-none pl-3" placeholder="e.g. Stephen King"  type="input" />
           </div>
           <div>
             <p className=" font-[400] text-[12px] text-[#022959] ">Email Address</p>
-            <input className="w-full h-10 border border-[#D6D9E6] bg-white font-[500] text-[15px] outline-none pl-3" type="input" placeholder="e.g. stephenking@lorem.com" />
+            <input 
+            
+            onChange={(e) => {
+              setEmail(e.target.value)
+          }}
+             className="w-full h-10 border border-[#D6D9E6] bg-white font-[500] text-[15px] outline-none pl-3" type="input" placeholder="e.g. stephenking@lorem.com" />
           </div>
           <div>
             <p className=" font-[400] text-[12px] text-[#022959] ">Phone Number</p>
-            <input className="w-full h-10 border border-[#D6D9E6] bg-white font-[500] text-[15px] outline-none pl-3" type="input" placeholder="e.g. +1 234 567 890" />
+            <input
+            onChange={(e) => {
+              setPhone(e.target.value)
+          }}
+             className="w-full h-10 border border-[#D6D9E6] bg-white font-[500] text-[15px] outline-none pl-3" type="input" placeholder="e.g. +1 234 567 890" />
           </div>
         </div>
       </div>

@@ -1,9 +1,21 @@
 import { useState } from "react";
 
-const Addons = () => {
-  const [isChecked1, setIsChecked1] = useState<boolean>(true);
-  const [isChecked2, setIsChecked2] = useState<boolean>(true);
-  const [isChecked3, setIsChecked3] = useState<boolean>(true);
+const Addons = ({
+  isChecked1,
+  setIsChecked1,
+  isChecked2,
+  setIsChecked2,
+  isChecked3,
+  setIsChecked3,
+}: {
+  isChecked1: boolean;
+  setIsChecked1: React.Dispatch<React.SetStateAction<boolean>>;
+  isChecked2: boolean;
+  setIsChecked2: React.Dispatch<React.SetStateAction<boolean>>;
+  isChecked3: boolean;
+  setIsChecked3: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  
 
   return (
     <div className="w-11/12 bg-white rounded-xl shadow-containerShadow m-auto -mt-24 mb-0">

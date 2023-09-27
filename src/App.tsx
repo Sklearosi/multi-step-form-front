@@ -4,9 +4,23 @@ import { useEffect, useState } from "react";
 import Plan from "./components/Plan";
 import Addons from "./components/Addons";
 import Finishing from "./components/Finishing";
+import { Price } from "./types/priceTypes";
 
 function App() {
   const [step, setStep] = useState<number>(1);
+
+  const [toggle, setToggle] = useState<boolean>(true)
+    const [planType, setPlanType] = useState<string>("arcade")
+    const [price, setPrice] = useState<Price>({
+        arcade: "$9/mo",
+        advanced: "$12/mo",
+        pro: "$15/mo"
+    })
+
+  const [isChecked1, setIsChecked1] = useState<boolean>(true);
+  const [isChecked2, setIsChecked2] = useState<boolean>(true);
+  const [isChecked3, setIsChecked3] = useState<boolean>(true);
+
 
   const navigate = useNavigate()
   const location:any = useLocation()
@@ -78,8 +92,13 @@ function App() {
       </div>
       <Routes>
         <Route path="/step1" element={<Personal />} />
-        <Route path="/step2" element={<Plan />} />
-        <Route path="/step3" element={<Addons />} />
+        <Route path="/step2" element={<Plan planType={planType} setPlanType={setPlanType} price={price} setPrice={setPrice} toggle={toggle} setToggle={setToggle} />} />
+        <Route path="/step3" element={<Addons isChecked1={isChecked1}
+              setIsChecked1={setIsChecked1}
+              isChecked2={isChecked2}
+              setIsChecked2={setIsChecked2}
+              isChecked3={isChecked3}
+              setIsChecked3={setIsChecked3} />} />
         <Route path="/step4" element={<Finishing />} />
       </Routes>
       <div className=" h-2"></div>

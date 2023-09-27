@@ -1,15 +1,23 @@
 import { useState } from "react"
 import { Price } from "../types/priceTypes";
 
-const Plan = () => {
+const Plan = ({
+    planType,
+    setPlanType,
+    price,
+    setPrice,
+    toggle,
+    setToggle,
+  }: {
+    planType: string;
+    setPlanType: React.Dispatch<React.SetStateAction<string>>;
+    price: Price;
+    setPrice: React.Dispatch<React.SetStateAction<Price>>;
+    toggle: boolean;
+    setToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  }) => {
 
-    const [toggle, setToggle] = useState<boolean>(true)
-    const [planType, setPlanType] = useState<string>("arcade")
-    const [price, setPrice] = useState<Price>({
-        arcade: "$9/mo",
-        advanced: "$12/mo",
-        pro: "$15/mo"
-    })
+    
 
     
     

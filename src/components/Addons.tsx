@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 
 const Addons = ({
   isChecked1,
@@ -35,7 +35,7 @@ const Addons = ({
           }`}
         >
           <label
-            className={`w-5 h-5 flex rounded-[3px] justify-center items-center ${
+            className={` cursor-pointer w-5 h-5 flex rounded-[3px] justify-center items-center ${
               !isChecked1 ? "bg-[#483EFF]" : "border border-[#D6D9E6]"
             }`}
             htmlFor="checked1"
@@ -73,7 +73,7 @@ const Addons = ({
           }`}
         >
           <label
-            className={`w-5 h-5 flex rounded-[3px] justify-center items-center ${
+            className={`cursor-pointer w-5 h-5 flex rounded-[3px] justify-center items-center ${
               !isChecked2 ? "bg-[#483EFF]" : "border border-[#D6D9E6]"
             }`}
             htmlFor="checked2"
@@ -111,7 +111,7 @@ const Addons = ({
           }`}
         >
           <label
-            className={`w-5 h-5 flex rounded-[3px] justify-center items-center ${
+            className={`cursor-pointer w-5 h-5 flex rounded-[3px] justify-center items-center ${
               !isChecked3 ? "bg-[#483EFF]" : "border border-[#D6D9E6]"
             }`}
             htmlFor="checked3"

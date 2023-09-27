@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { Price } from "../types/priceTypes";
 
 const Plan = ({
@@ -36,36 +35,36 @@ const Plan = ({
           </div>
           <div className=" w-[85%] m-auto mt-5 grid gap-5">
             <div onClick={() => {
-                setPlanType("arcade")
+                setPlanType("Arcade")
             }} className={` flex w-full h-[77px] items-center border  bg-white rounded-lg pl-3 cursor-pointer ${
-                planType === "arcade" ? "border-[#483EFF] bg-[#F8F9FF]" : "border-[#D6D9E6] bg-white "
+                planType === "Arcade" ? "border-[#483EFF] bg-[#F8F9FF]" : "border-[#D6D9E6] bg-white "
             }`}>
                 <img src="/assets/icon-arcade.svg" alt="" />
                 <div className=" ml-4 grid gap-1">
                     <p className=" font-[500] text-[16px] text-[#022959] ">Arcade</p>
-                    <p className=" font-[400] text-[14px] text-[#9699AA] ">{price.arcade}</p>
+                    <p className=" font-[400] text-[14px] text-[#9699AA] ">${price.arcade}/mo</p>
                 </div>
             </div>
             <div onClick={() => {
-                setPlanType("advanced")
+                setPlanType("Advanced")
             }} className={` flex w-full h-[77px] items-center border  bg-white rounded-lg pl-3 cursor-pointer ${
-                planType === "advanced" ? "border-[#483EFF] bg-[#F8F9FF]" : "border-[#D6D9E6] bg-white "
+                planType === "Advanced" ? "border-[#483EFF] bg-[#F8F9FF]" : "border-[#D6D9E6] bg-white "
             }`}>
                 <img src="/assets/icon-advanced.svg" alt="" />
                 <div className=" ml-4 grid gap-1">
                     <p className=" font-[500] text-[16px] text-[#022959] ">Advanced</p>
-                    <p className=" font-[400] text-[14px] text-[#9699AA] ">{price.advanced}</p>
+                    <p className=" font-[400] text-[14px] text-[#9699AA] ">${price.advanced}/mo</p>
                 </div>
             </div>
             <div onClick={() => {
-                setPlanType("pro")
+                setPlanType("Pro")
             }} className={` flex w-full h-[77px] items-center border  bg-white rounded-lg pl-3 cursor-pointer ${
-                planType === "pro" ? "border-[#483EFF] bg-[#F8F9FF]" : "border-[#D6D9E6] bg-white "
+                planType === "Pro" ? "border-[#483EFF] bg-[#F8F9FF]" : "border-[#D6D9E6] bg-white "
             }`}>
                 <img src="/assets/icon-pro.svg" alt="" />
                 <div className=" ml-4 grid gap-1">
                     <p className=" font-[500] text-[16px] text-[#022959] ">Pro</p>
-                    <p className=" font-[400] text-[14px] text-[#9699AA] ">{price.pro}</p>
+                    <p className=" font-[400] text-[14px] text-[#9699AA] ">${price.pro}/mo</p>
                 </div>
             </div>
           </div>
@@ -79,15 +78,15 @@ const Plan = ({
                     setToggle(!toggle)
                     if(!toggle){
                         setPrice({
-                            arcade: "$9/mo",
-                            advanced: "$12/mo",
-                            pro: "$15/mo"
+                            arcade: 9,
+                            advanced: 12,
+                            pro: 15
                         })
                     } else {
                         setPrice({
-                            arcade: "$90/mo",
-                            advanced: "$120/mo",
-                            pro: "$150/mo"
+                            arcade: 90,
+                            advanced: 120,
+                            pro: 150
                         })
                     }
                     

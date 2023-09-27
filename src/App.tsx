@@ -1,4 +1,10 @@
-import { Routes, Link, Route, useLocation, useNavigate } from "react-router-dom";
+import {
+  Routes,
+  Link,
+  Route,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import Personal from "./components/Personal";
 import { useEffect, useState } from "react";
 import Plan from "./components/Plan";
@@ -9,21 +15,20 @@ import { Price } from "./types/priceTypes";
 function App() {
   const [step, setStep] = useState<number>(1);
 
-  const [toggle, setToggle] = useState<boolean>(true)
-    const [planType, setPlanType] = useState<string>("arcade")
-    const [price, setPrice] = useState<Price>({
-        arcade: "$9/mo",
-        advanced: "$12/mo",
-        pro: "$15/mo"
-    })
+  const [toggle, setToggle] = useState<boolean>(true);
+  const [planType, setPlanType] = useState<string>("Arcade");
+  const [price, setPrice] = useState<Price>({
+    arcade: 9,
+    advanced: 12,
+    pro: 15,
+  });
 
   const [isChecked1, setIsChecked1] = useState<boolean>(true);
   const [isChecked2, setIsChecked2] = useState<boolean>(true);
   const [isChecked3, setIsChecked3] = useState<boolean>(true);
 
-
-  const navigate = useNavigate()
-  const location:any = useLocation()
+  const navigate = useNavigate();
+  const location: any = useLocation();
   const currentStep = parseInt(location.pathname.replace("/step", ""), 10);
 
   useEffect(() => {
@@ -42,7 +47,6 @@ function App() {
     }
   };
 
-
   return (
     <div className="flex flex-col h-screen bg-[#EFF5FF]">
       <div
@@ -50,7 +54,7 @@ function App() {
         style={{ backgroundImage: "url(/assets/bg-sidebar-mobile.svg)" }}
       >
         <div className="flex justify-center items-center w-full pt-6">
-        <ul className="flex w-[180px] justify-between items-center">
+          <ul className="flex w-[180px] justify-between items-center">
             <li
               className={`flex justify-center items-center rounded-full text-[14px] font-[700] w-[33px] h-[33px] ${
                 currentStep === 1
@@ -92,20 +96,50 @@ function App() {
       </div>
       <Routes>
         <Route path="/step1" element={<Personal />} />
-        <Route path="/step2" element={<Plan planType={planType} setPlanType={setPlanType} price={price} setPrice={setPrice} toggle={toggle} setToggle={setToggle} />} />
-        <Route path="/step3" element={<Addons isChecked1={isChecked1}
+        <Route
+          path="/step2"
+          element={
+            <Plan
+              planType={planType}
+              setPlanType={setPlanType}
+              price={price}
+              setPrice={setPrice}
+              toggle={toggle}
+              setToggle={setToggle}
+            />
+          }
+        />
+        <Route
+          path="/step3"
+          element={
+            <Addons
+              isChecked1={isChecked1}
               setIsChecked1={setIsChecked1}
               isChecked2={isChecked2}
               setIsChecked2={setIsChecked2}
               isChecked3={isChecked3}
-              setIsChecked3={setIsChecked3} />} />
-        <Route path="/step4" element={<Finishing />} />
+              setIsChecked3={setIsChecked3}
+            />
+          }
+        />
+        <Route
+          path="/step4"
+          element={
+            <Finishing
+              planType={planType}
+              toggle={toggle}
+              setStep={setStep}
+              price={price}
+              isChecked1={isChecked1}
+              isChecked2={isChecked2}
+              isChecked3={isChecked3}
+            />
+          }
+        />
       </Routes>
       <div className=" h-2"></div>
       <div className="z-10 w-full h-[72px] bg-white mt-auto flex justify-center items-center">
         <div className="flex justify-between w-[90%]">
-        
-          
           <Link
             className={`${
               step > 1 ? "block" : " invisible"
@@ -115,7 +149,7 @@ function App() {
           >
             Go Back
           </Link>
-          
+
           <Link
             className="w-[97px] h-[40px] flex justify-center items-center rounded-md bg-[#022959] text-white mr-2"
             onClick={goToNextStep}
@@ -123,7 +157,6 @@ function App() {
           >
             Next Step
           </Link>
-          
         </div>
       </div>
     </div>

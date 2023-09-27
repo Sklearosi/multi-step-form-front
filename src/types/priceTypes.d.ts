@@ -1,7 +1,7 @@
 
 
 export interface Price{
-    arcade: string,
-    advanced: string,
-    pro: string
+    arcade: number,
+    advanced: number,
+    pro: number
 }

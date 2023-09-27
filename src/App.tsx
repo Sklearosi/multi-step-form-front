@@ -2,6 +2,7 @@ import { Routes, Link, Route, useLocation, useNavigate } from "react-router-dom"
 import Personal from "./components/Personal";
 import { useEffect, useState } from "react";
 import Plan from "./components/Plan";
+import Addons from "./components/Addons";
 
 function App() {
   const [step, setStep] = useState<number>(1);
@@ -77,7 +78,7 @@ function App() {
       <Routes>
         <Route path="/step1" element={<Personal />} />
         <Route path="/step2" element={<Plan />} />
-        <Route path="/step3" element={<Personal />} />
+        <Route path="/step3" element={<Addons />} />
         <Route path="/step4" element={<Personal />} />
       </Routes>
       <div className=" h-2"></div>

@@ -1,12 +1,22 @@
 import { useState } from "react"
+import { Price } from "../types/priceTypes";
 
 const Plan = () => {
 
     const [toggle, setToggle] = useState<boolean>(true)
+    const [planType, setPlanType] = useState<string>("arcade")
+    const [price, setPrice] = useState<Price>({
+        arcade: "$9/mo",
+        advanced: "$12/mo",
+        pro: "$15/mo"
+    })
+
+    
+    
 
   return (
     <div>
-      <div className=" w-11/12 m-auto bg-white shadow-conteinerShadow rounded-xl -mt-10 pb-1">
+      <div className=" w-11/12 m-auto bg-white shadow-conteinerShadow rounded-xl -mt-24 pb-1">
         <div className=" w-[90%] m-auto ">
           <div className=" pt-5">
             <p className=" font-[700] text-[#022959] text-[24px] ">
@@ -17,25 +27,37 @@ const Plan = () => {
             </p>
           </div>
           <div className=" w-[85%] m-auto mt-5 grid gap-5">
-            <div className={` flex w-full h-[77px] items-center border border-[#D6D9E6] bg-white rounded-lg pl-3 cursor-pointer`}>
+            <div onClick={() => {
+                setPlanType("arcade")
+            }} className={` flex w-full h-[77px] items-center border  bg-white rounded-lg pl-3 cursor-pointer ${
+                planType === "arcade" ? "border-[#483EFF] bg-[#F8F9FF]" : "border-[#D6D9E6] bg-white "
+            }`}>
                 <img src="/assets/icon-arcade.svg" alt="" />
                 <div className=" ml-4 grid gap-1">
                     <p className=" font-[500] text-[16px] text-[#022959] ">Arcade</p>
-                    <p className=" font-[400] text-[14px] text-[#9699AA] ">$9/mo</p>
+                    <p className=" font-[400] text-[14px] text-[#9699AA] ">{price.arcade}</p>
                 </div>
             </div>
-            <div className={` flex w-full h-[77px] items-center border border-[#D6D9E6] bg-white rounded-lg pl-3 cursor-pointer`}>
-                <img src="/assets/icon-arcade.svg" alt="" />
+            <div onClick={() => {
+                setPlanType("advanced")
+            }} className={` flex w-full h-[77px] items-center border  bg-white rounded-lg pl-3 cursor-pointer ${
+                planType === "advanced" ? "border-[#483EFF] bg-[#F8F9FF]" : "border-[#D6D9E6] bg-white "
+            }`}>
+                <img src="/assets/icon-advanced.svg" alt="" />
                 <div className=" ml-4 grid gap-1">
                     <p className=" font-[500] text-[16px] text-[#022959] ">Advanced</p>
-                    <p className=" font-[400] text-[14px] text-[#9699AA] ">$12/mo</p>
+                    <p className=" font-[400] text-[14px] text-[#9699AA] ">{price.advanced}</p>
                 </div>
             </div>
-            <div className={` flex w-full h-[77px] items-center border border-[#D6D9E6] bg-white rounded-lg pl-3 cursor-pointer`}>
-                <img src="/assets/icon-arcade.svg" alt="" />
+            <div onClick={() => {
+                setPlanType("pro")
+            }} className={` flex w-full h-[77px] items-center border  bg-white rounded-lg pl-3 cursor-pointer ${
+                planType === "pro" ? "border-[#483EFF] bg-[#F8F9FF]" : "border-[#D6D9E6] bg-white "
+            }`}>
+                <img src="/assets/icon-pro.svg" alt="" />
                 <div className=" ml-4 grid gap-1">
                     <p className=" font-[500] text-[16px] text-[#022959] ">Pro</p>
-                    <p className=" font-[400] text-[14px] text-[#9699AA] ">$15/mo</p>
+                    <p className=" font-[400] text-[14px] text-[#9699AA] ">{price.pro}</p>
                 </div>
             </div>
           </div>
@@ -47,6 +69,21 @@ const Plan = () => {
                 </label>
                 <input onChange={() => {
                     setToggle(!toggle)
+                    if(!toggle){
+                        setPrice({
+                            arcade: "$9/mo",
+                            advanced: "$12/mo",
+                            pro: "$15/mo"
+                        })
+                    } else {
+                        setPrice({
+                            arcade: "$90/mo",
+                            advanced: "$120/mo",
+                            pro: "$150/mo"
+                        })
+                    }
+                    
+
                 }} className="hidden" id="toggle" type="checkbox" />
                 <p className={` transition-all duration-300 font-[500] text-[14px] ${!toggle ? "text-[#022959]" : "text-[#9699AA]"} `}>Yearly</p>
             </div>

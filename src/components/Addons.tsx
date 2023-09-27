@@ -1,3 +1,4 @@
+import { AddonType } from "../types/priceTypes";
 
 
 const Addons = ({
@@ -7,6 +8,8 @@ const Addons = ({
   setIsChecked2,
   isChecked3,
   setIsChecked3,
+  addonPrice,
+  toggle,
 }: {
   isChecked1: boolean;
   setIsChecked1: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,6 +17,8 @@ const Addons = ({
   setIsChecked2: React.Dispatch<React.SetStateAction<boolean>>;
   isChecked3: boolean;
   setIsChecked3: React.Dispatch<React.SetStateAction<boolean>>;
+  addonPrice:AddonType;
+  toggle:boolean;
 }) => {
   
 
@@ -61,7 +66,7 @@ const Addons = ({
               Extra 1TB of cloud save
             </p>
           </div>
-          <p className="font-[400] text-[12px] text-[#483EFF]">+$1/mo</p>
+          <p className="font-[400] text-[12px] text-[#483EFF]">+${addonPrice.online}/{toggle ? "mo" : "yr"}</p>
         </div>
 
        
@@ -99,7 +104,7 @@ const Addons = ({
               Description of add-on 2
             </p>
           </div>
-          <p className="font-[400] text-[12px] text-[#483EFF]">+$2/mo</p>
+          <p className="font-[400] text-[12px] text-[#483EFF]">+${addonPrice.another}/{toggle ? "mo" : "yr"}</p>
         </div>
 
      
@@ -137,7 +142,7 @@ const Addons = ({
               Description of add-on 3
             </p>
           </div>
-          <p className="font-[400] text-[12px] text-[#483EFF]">+$3/mo</p>
+          <p className="font-[400] text-[12px] text-[#483EFF]">+${addonPrice.third}/{toggle ? "mo" : "yr"}</p>
         </div>
       </div>
     </div>

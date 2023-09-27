@@ -10,7 +10,8 @@ import { useEffect, useState } from "react";
 import Plan from "./components/Plan";
 import Addons from "./components/Addons";
 import Finishing from "./components/Finishing";
-import { Price } from "./types/priceTypes";
+import { AddonType, Price } from "./types/priceTypes";
+import Done from "./components/Done";
 
 function App() {
   const [step, setStep] = useState<number>(1);
@@ -22,6 +23,12 @@ function App() {
     advanced: 12,
     pro: 15,
   });
+
+  const [addonPrice, setAddonPrice] = useState<AddonType>({
+    online:1,
+    another:2,
+    third:3
+  })
 
   const [isChecked1, setIsChecked1] = useState<boolean>(true);
   const [isChecked2, setIsChecked2] = useState<boolean>(true);
@@ -36,7 +43,7 @@ function App() {
   }, [step, navigate]);
 
   const goToNextStep = () => {
-    if (step < 4) {
+    if (step < 5) {
       setStep(step + 1);
     }
   };
@@ -106,6 +113,7 @@ function App() {
               setPrice={setPrice}
               toggle={toggle}
               setToggle={setToggle}
+              setAddonPrice={setAddonPrice}
             />
           }
         />
@@ -119,6 +127,8 @@ function App() {
               setIsChecked2={setIsChecked2}
               isChecked3={isChecked3}
               setIsChecked3={setIsChecked3}
+              addonPrice={addonPrice}
+              toggle={toggle}
             />
           }
         />
@@ -133,16 +143,18 @@ function App() {
               isChecked1={isChecked1}
               isChecked2={isChecked2}
               isChecked3={isChecked3}
+              addonPrice={addonPrice}
             />
           }
         />
+        <Route path="/step5" element={<Done/>}/>
       </Routes>
       <div className=" h-2"></div>
       <div className="z-10 w-full h-[72px] bg-white mt-auto flex justify-center items-center">
         <div className="flex justify-between w-[90%]">
           <Link
             className={`${
-              step > 1 ? "block" : " invisible"
+              step > 1 || step === 5 ? "block" : " invisible"
             } w-[97px] h-[40px] flex justify-center items-center rounded-md  bg-red-500 text-white mr-2`}
             onClick={goToPreviousStep}
             to={`/step${step - 1}`}
@@ -155,7 +167,7 @@ function App() {
             onClick={goToNextStep}
             to={`/step${step}`}
           >
-            Next Step
+            {step === 4 ? "Confirm" : "Next step"}
           </Link>
         </div>
       </div>

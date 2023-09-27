@@ -1,4 +1,4 @@
-import { Price } from "../types/priceTypes";
+import { AddonType, Price } from "../types/priceTypes";
 
 const Plan = ({
     planType,
@@ -7,6 +7,7 @@ const Plan = ({
     setPrice,
     toggle,
     setToggle,
+    setAddonPrice,
   }: {
     planType: string;
     setPlanType: React.Dispatch<React.SetStateAction<string>>;
@@ -14,6 +15,7 @@ const Plan = ({
     setPrice: React.Dispatch<React.SetStateAction<Price>>;
     toggle: boolean;
     setToggle: React.Dispatch<React.SetStateAction<boolean>>;
+    setAddonPrice:React.Dispatch<React.SetStateAction<AddonType>>;
   }) => {
 
     
@@ -82,11 +84,21 @@ const Plan = ({
                             advanced: 12,
                             pro: 15
                         })
+                        setAddonPrice({
+                          online:1,
+                          another:2,
+                          third:3
+                        })
                     } else {
                         setPrice({
                             arcade: 90,
                             advanced: 120,
                             pro: 150
+                        })
+                        setAddonPrice({
+                          online:10,
+                          another:20,
+                          third:30
                         })
                     }
                     

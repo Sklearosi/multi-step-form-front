@@ -7,11 +7,14 @@ interface PlanType {
   isChecked1:boolean;
   isChecked2:boolean;
   isChecked3:boolean;
+  addonPrice:AddonType;
 }
 
-import { Price } from "../types/priceTypes";
 
-const Finishing: React.FC<PlanType> = ({planType, toggle, setStep, price, isChecked1, isChecked2, isChecked3}) => {
+
+import { AddonType, Price } from "../types/priceTypes";
+
+const Finishing: React.FC<PlanType> = ({planType, toggle, setStep, price, isChecked1, isChecked2, isChecked3, addonPrice}) => {
     return(
         <div className="w-11/12 bg-white rounded-xl shadow-containerShadow m-auto -mt-24 mb-0">
             <div className="pt-5 w-10/12 m-auto">
@@ -29,13 +32,13 @@ const Finishing: React.FC<PlanType> = ({planType, toggle, setStep, price, isChec
         setStep(2)
       }} className=" underline " to="/step2">Change</Link>
       </div>
-      {planType === "Arcade" ? <p className=" text-[#022959] text-[14px] font-[700] ">${price.arcade}/mo</p> : planType === "Advanced" ? <p className=" text-[#022959] text-[14px] font-[700] ">${price.advanced}/mo</p> : planType === "Pro" ? <p className=" text-[#022959] text-[14px] font-[700] ">${price.pro}/mo</p> : null}
+      {planType === "Arcade" ? <p className=" text-[#022959] text-[14px] font-[700] ">${price.arcade}/{toggle ? "mo" : "yr"}</p> : planType === "Advanced" ? <p className=" text-[#022959] text-[14px] font-[700] ">${price.advanced}/{toggle ? "mo" : "yr"}</p> : planType === "Pro" ? <p className=" text-[#022959] text-[14px] font-[700] ">${price.pro}/{toggle ? "mo" : "yr"}</p> : null}
       </div>
 
       <div className=" grid gap-5">
-        {!isChecked1 ? <div className=" flex justify-between items-center"><p className=" text-[#9699AA] text-[14px] font-[400] ">Online services</p><p className=" text-[#022959] text-[14px] font-[400] ">+$1/mo</p></div> : null}
-        {!isChecked2 ? <div className=" flex justify-between items-center"><p className=" text-[#9699AA] text-[14px] font-[400] ">Larger storage</p><p className=" text-[#022959] text-[14px] font-[400] ">+$2/mo</p></div> : null}
-        {!isChecked3 ? <div className=" flex justify-between items-center"><p className=" text-[#9699AA] text-[14px] font-[400] ">Customizable profile</p><p className=" text-[#022959] text-[14px] font-[400] ">+$3/mo</p></div> : null}
+        {!isChecked1 ? <div className=" flex justify-between items-center"><p className=" text-[#9699AA] text-[14px] font-[400] ">Online services</p><p className=" text-[#022959] text-[14px] font-[400] ">+$1/{toggle ? "mo" : "yr"}</p></div> : null}
+        {!isChecked2 ? <div className=" flex justify-between items-center"><p className=" text-[#9699AA] text-[14px] font-[400] ">Larger storage</p><p className=" text-[#022959] text-[14px] font-[400] ">+$2/{toggle ? "mo" : "yr"}</p></div> : null}
+        {!isChecked3 ? <div className=" flex justify-between items-center"><p className=" text-[#9699AA] text-[14px] font-[400] ">Customizable profile</p><p className=" text-[#022959] text-[14px] font-[400] ">+$3/{toggle ? "mo" : "yr"}</p></div> : null}
       </div>
       
 
@@ -44,10 +47,10 @@ const Finishing: React.FC<PlanType> = ({planType, toggle, setStep, price, isChec
       <div className=" w-[75%] m-auto mt-5 flex justify-between items-center pb-6">
         <p className=" text-[#9699AA] font-[400] text-14px ">Total ({!toggle ? "per year" : "per month"})</p>
         <p className=" text-[#483EFF] text-[16px] font-[700] ">
-          {planType === "Pro" ? price.pro + (!isChecked1 && isChecked2 && isChecked3  ? 1 : !isChecked1 && !isChecked2 && isChecked3 ? 3 : !isChecked1 && !isChecked2 && !isChecked3 ? 6 : isChecked1 && !isChecked2 && !isChecked3  ? 5 : !isChecked1 && isChecked2 && !isChecked3  ? 4 : 0) : ""}
-          {planType === "Advanced" ? price.advanced + (!isChecked1 && isChecked2 && isChecked3  ? 1 : !isChecked1 && !isChecked2 && isChecked3 ? 3 : !isChecked1 && !isChecked2 && !isChecked3 ? 6 : isChecked1 && !isChecked2 && !isChecked3  ? 5 : !isChecked1 && isChecked2 && !isChecked3  ? 4 : 0) : ""}
-          {planType === "Arcade" ? price.arcade + (!isChecked1 && isChecked2 && isChecked3  ? 1 : !isChecked1 && !isChecked2 && isChecked3 ? 3 : !isChecked1 && !isChecked2 && !isChecked3 ? 6 : isChecked1 && !isChecked2 && !isChecked3  ? 5 : !isChecked1 && isChecked2 && !isChecked3  ? 4 : 0) : ""}
-          
+          {planType === "Pro" ? price.pro + (!isChecked1 && isChecked2 && isChecked3  ? addonPrice.online : !isChecked1 && !isChecked2 && isChecked3 ? addonPrice.online + addonPrice.another : !isChecked1 && !isChecked2 && !isChecked3 ? addonPrice.online + addonPrice.another + addonPrice.third : isChecked1 && !isChecked2 && !isChecked3  ? 5 : !isChecked1 && isChecked2 && !isChecked3  ? 4 : 0) : ""}
+          {planType === "Advanced" ? price.advanced + (!isChecked1 && isChecked2 && isChecked3  ? addonPrice.online : !isChecked1 && !isChecked2 && isChecked3 ? addonPrice.online + addonPrice.another : !isChecked1 && !isChecked2 && !isChecked3 ? addonPrice.online + addonPrice.another + addonPrice.third : isChecked1 && !isChecked2 && !isChecked3  ? 5 : !isChecked1 && isChecked2 && !isChecked3  ? 4 : 0) : ""}
+          {planType === "Arcade" ? price.arcade + (!isChecked1 && isChecked2 && isChecked3  ? addonPrice.online : !isChecked1 && !isChecked2 && isChecked3 ? addonPrice.online + addonPrice.another : !isChecked1 && !isChecked2 && !isChecked3 ? addonPrice.online + addonPrice.another + addonPrice.third : isChecked1 && !isChecked2 && !isChecked3  ? 5 : !isChecked1 && isChecked2 && !isChecked3  ? 4 : 0) : ""}
+          /{toggle ? "mo" : "yr"}
         </p>
       </div>
         </div>

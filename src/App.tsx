@@ -1,7 +1,6 @@
 import { Routes, Link, Route, useLocation, useNavigate } from "react-router-dom";
 import Personal from "./components/Personal";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Plan from "./components/Plan";
 
 function App() {
